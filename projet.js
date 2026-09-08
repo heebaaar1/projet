@@ -182,7 +182,7 @@ const trips = [
 ];
 let prompt = require('prompt-sync')()
 
-function affichermenu () {
+function affichermenu() {
     console.log("\n=================================");
     console.log("        RAILWAY MANAGER")
     console.log("=================================");
@@ -195,9 +195,14 @@ function affichermenu () {
     console.log("7. Trier les trajets");
     console.log("0. Quitter \n");
 }
-affichermenu()
+function affichertrajets() {
+    trips.forEach((trip) => {
+        console.log("#" + trip.id, trip.departure + "→" + trip.destination);
+        console.log("depart : " + trip.departureTime);
+        console.log("arrivee : " + trip.arrivalTime);
+        console.log("places disponibles : " + trip.availableSeats);
+        console.log();
+    })
+}
 
-
-
-
-
+affichertrajets();
