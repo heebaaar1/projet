@@ -255,3 +255,54 @@ function affichertrajets() {
         console.log();
             }
 }
+function acheterTicket() {
+    let passengerName = prompt("Nom du passager :");
+    let tripId = Number(prompt("Identifiant du trajet :"));
+    let trip = null;
+
+    for (let i = 0; i < trips.length; i++) {
+        if (trips[i].id === tripId) {
+            trip = trips[i];
+            break;
+        }
+    }
+    if (trip === null) {
+        console.log("Trajet introuvable.");
+        return;
+    }
+
+    if (trip.availableSeats <= 0) {
+        console.log("Train complet.");
+        return;
+    }
+
+    let seatNumber = 1;
+
+    for (let i = 0; i < tickets.length; i++) {
+        if (tickets[i].tripId === tripId) {
+            seatNumber++;
+        }
+    }
+
+
+    let ticket = {
+        id: tickets.length + 1,
+        passengerName: passengerName,
+        tripId: trip.id,
+        seatNumber: seatNumber,
+        price: trip.price
+    };
+
+    trip.availableSeats--;
+
+    tickets.push(ticket);
+
+    console.log("Ticket acheté avec succès.");
+    console.log();
+    console.log("Ticket #" + ticket.id);
+    console.log("Passager : " + ticket.passengerName);
+    console.log("Trajet : " + trip.departure + " → " + trip.destination);
+    console.log("Place : " + ticket.seatNumber);
+    console.log("Prix : " + ticket.price + " DH");
+}
+
