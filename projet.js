@@ -401,7 +401,7 @@ function filtrerTrajets() {
     let trouve = false;
 
     for (let i = 0; i < trips.length; i++) {
-        if (trips[i].departure.toLowerCase() === departure.toLowerCase()) {
+        if (trips[i].departure === departure) {
             console.log(
                 trips[i].departure + " → " +
                 trips[i].destination + " : " +
@@ -416,4 +416,3 @@ function filtrerTrajets() {
         console.log("Aucun trajet trouvé.");
     }
 }
-
