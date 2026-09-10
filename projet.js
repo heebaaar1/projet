@@ -1,4 +1,5 @@
 var prompt = require('prompt-sync')();
+const tickets=[];
 const trips = [
     {
         id: 1,
@@ -224,7 +225,7 @@ function menuPrincipal() {
                 break;
 
             case "6":
-                filtrerTrajets();
+                 filtrerTrajets()
                 break;
 
             case "7":
@@ -283,7 +284,6 @@ function acheterTicket() {
             seatNumber++;
         }
     }
-
 
     let ticket = {
         id: tickets.length + 1,
@@ -360,5 +360,60 @@ function annulerTicket() {
     tickets.splice(ticketIndex, 1);
 
     console.log("Ticket annulé avec succès.");
+}
+function rechercherTicket() {
+    let passengerName = prompt("Nom du passager :");
+
+    let trouve = false;
+
+    for (let i = 0; i < tickets.length; i++) {
+        let ticket = tickets[i];
+
+        if (ticket.passengerName.toLowerCase() === passengerName.toLowerCase()) {
+
+            let trip = null;
+
+            for (let j = 0; j < trips.length; j++) {
+                if (trips[j].id === ticket.tripId) {
+                    trip = trips[j];
+                    break;
+                }
+            }
+
+            console.log("Ticket #" + ticket.id);
+            console.log("Passager : " + ticket.passengerName);
+            console.log("Trajet : " + trip.departure + " → " + trip.destination);
+            console.log("Place : " + ticket.seatNumber);
+            console.log("Prix : " + ticket.price + " DH");
+            console.log();
+
+            trouve = true;
+        }
+    }
+
+    if (!trouve) {
+        console.log("Aucun ticket trouvé pour ce passager.");
+    }
+}
+function filtrerTrajets() {
+    let departure = prompt("Ville de départ :");
+
+    let trouve = false;
+
+    for (let i = 0; i < trips.length; i++) {
+        if (trips[i].departure.toLowerCase() === departure.toLowerCase()) {
+            console.log(
+                trips[i].departure + " → " +
+                trips[i].destination + " : " +
+                trips[i].price + " DH"
+            );
+
+            trouve = true;
+        }
+    }
+
+    if (!trouve) {
+        console.log("Aucun trajet trouvé.");
+    }
 }
 
