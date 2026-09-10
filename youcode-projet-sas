@@ -243,3 +243,15 @@ function menuPrincipal() {
 
     } while (choix !== "0");
 }
+menuPrincipal();
+function affichertrajets() {
+    for (let i = 0; i < trips.length; i++) {
+        let trip = trips[i];
+
+        console.log("#" + trip.id, trip.departure + " → " + trip.destination);
+        console.log("départ : " + trip.departureTime);
+        console.log("arrivée : " + trip.arrivalTime);
+        console.log("places disponibles : " + trip.availableSeats);
+        console.log();
+            }
+}
