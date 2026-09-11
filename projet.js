@@ -306,3 +306,31 @@ function acheterTicket() {
     console.log("Place : " + ticket.seatNumber);
     console.log("Prix : " + ticket.price + " DH");
 }
+function afficherTickets() {
+    if (tickets.length === 0) {
+        console.log("Aucun ticket enregistré.");
+        return;
+    }
+
+    console.log("=== TICKETS ===");
+    console.log();
+
+    for (let i = 0; i < tickets.length; i++) {
+        let ticket = tickets[i];
+        let trip;
+
+        for (let j = 0; j < trips.length; j++) {
+            if (trips[j].id === ticket.tripId) {
+                trip = trips[j];
+                break;
+            }
+        }
+
+        console.log("Ticket #" + ticket.id);
+        console.log("Passager : " + ticket.passengerName);
+        console.log("Trajet : " + trip.departure + " → " + trip.destination);
+        console.log("Place : " + ticket.seatNumber);
+        console.log("Prix : " + ticket.price + " DH");
+        console.log();
+    }
+}
