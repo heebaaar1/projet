@@ -395,3 +395,24 @@ function rechercherTicket() {
         console.log("Aucun ticket trouvé pour ce passager.");
     }
 }
+function filtrerTrajets() {
+    let departure = prompt("Ville de départ :");
+
+    let trouve = false;
+
+    for (let i = 0; i < trips.length; i++) {
+        if (trips[i].departure === departure) {
+            console.log(
+                trips[i].departure + " → " +
+                trips[i].destination + " : " +
+                trips[i].price + " DH"
+            );
+
+            trouve = true;
+        }
+    }
+
+    if (!trouve) {
+        console.log("Aucun trajet trouvé.");
+    }
+}
