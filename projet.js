@@ -225,11 +225,11 @@ function menuPrincipal() {
                 break;
 
             case "6":
-                 filtrerTrajets()
+                 filtrerTrajets();
                 break;
 
             case "7":
-                trierTrajets();
+                trierParPrix();
                 break;
 
             case "0":
@@ -414,5 +414,31 @@ function filtrerTrajets() {
 
     if (!trouve) {
         console.log("Aucun trajet trouvé.");
+    }
+}
+function trierParPrix() {
+
+    for (let i = 0; i < trips.length - 1; i++) {
+
+        let min = i;
+
+        for (let j = i + 1; j < trips.length; j++) {
+
+            if (trips[j].price < trips[min].price) {
+                min = j;
+            }
+        }
+
+        let temp = trips[i];
+        trips[i] = trips[min];
+        trips[min] = temp;
+    }
+
+    for (let i = 0; i < trips.length; i++) {
+        console.log(
+            trips[i].departure + " → " +
+            trips[i].destination + " : " +
+            trips[i].price + " DH"
+        );
     }
 }
