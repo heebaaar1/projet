@@ -334,3 +334,30 @@ function afficherTickets() {
         console.log();
     }
 }
+function annulerTicket() {
+    let ticketId = Number(prompt("Identifiant du ticket :"));
+
+    let ticketIndex = -1;
+
+    for (let i = 0; i < tickets.length; i++) {
+        if (tickets[i].id === ticketId) {
+            ticketIndex = i;
+            break;
+        }
+    }
+    if (ticketIndex === -1) {
+        console.log("Ticket introuvable.");
+        return;
+    }
+    let ticket = tickets[ticketIndex];
+
+    for (let i = 0; i < trips.length; i++) {
+        if (trips[i].id === ticket.tripId) {
+            trips[i].availableSeats++;
+            break;
+        }
+    }
+    tickets.splice(ticketIndex, 1);
+
+    console.log("Ticket annulé avec succès.");
+}
